@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — Glossário do Design Circular</title>
+  <style>
+    :root {
+      --primary:      #007F91;
+      --primary-dark: #005F6E;
+      --primary-light:#009DB2;
+      --primary-bg:   #CCE9ED;
+      --primary-pale: #EAF6F8;
+      --gray-100: #f7f9fa;
+      --gray-200: #e8ecee;
+      --gray-400: #aab4bb;
+      --gray-600: #5f7178;
+      --gray-800: #1e2d32;
+      --radius: 8px;
+      --shadow: 0 1px 4px rgba(0,0,0,.07);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--gray-100); color: var(--gray-800); min-height: 100vh; }
+
+    /* ── Login ───────────────────────────────── */
+    #loginScreen {
+      min-height: 100vh; display: flex;
+      align-items: center; justify-content: center;
+      background: var(--primary);
+    }
+    .login-box {
+      background: #fff; border-radius: 16px;
+      padding: 2.5rem 2rem; width: 100%; max-width: 380px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.2);
+      text-align: center;
+    }
+    .login-box .logo { font-size: 2.5rem; margin-bottom: .5rem; }
+    .login-box h1 { font-size: 1.2rem; color: var(--primary-dark); margin-bottom: .2rem; }
+    .login-box p  { font-size: .85rem; color: var(--gray-600); margin-bottom: 1.5rem; }
+    .login-box input {
+      width: 100%; padding: .75rem 1rem;
+      border: 1.5px solid var(--gray-200); border-radius: 8px;
+      font-size: 1rem; outline: none; margin-bottom: .8rem;
+      transition: border-color .15s;
+    }
+    .login-box input:focus { border-color: var(--primary-light); }
+    .login-box button {
+      width: 100%; padding: .8rem;
+      background: var(--primary); color: #fff;
+      border: none; border-radius: 8px;
+      font-size: 1rem; font-weight: 600; cursor: pointer;
+      transition: background .15s;
+    }
+    .login-box button:hover { background: var(--primary-dark); }
+    .login-error {
+      color: #c0392b; font-size: .83rem;
+      margin-top: .5rem; min-height: 1.2em;
+    }
+
+    /* ── App (hidden until login) ────────────── */
+    #app { display: none; }
+
+    /* ── Header ──────────────────────────────── */
+    header {
+      background: var(--primary); color: #fff;
+      padding: 1.2rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      flex-wrap: wrap;
+    }
+    header h1 { font-size: 1.15rem; font-weight: 700; flex: 1; }
+    .header-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+    .btn {
+      padding: .55rem 1.1rem; border-radius: 6px;
+      font-size: .88rem; font-weight: 600; cursor: pointer;
+      border: none; transition: background .15s, opacity .15s;
+    }
+    .btn-white  { background: #fff; color: var(--primary); }
+    .btn-white:hover  { background: var(--primary-pale); }
+    .btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.5); }
+    .btn-outline:hover { background: rgba(255,255,255,.15); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-secondary { background: var(--gray-200); color: var(--gray-800); }
+    .btn-secondary:hover { background: var(--gray-400); color: #fff; }
+    .btn-danger { background: #fdecea; color: #c0392b; border: 1px solid #f5c6cb; }
+    .btn-danger:hover { background: #f5c6cb; }
+
+    /* ── Toolbar ─────────────────────────────── */
+    .toolbar {
+      background: #fff; border-bottom: 1px solid var(--gray-200);
+      padding: .75rem 1.5rem;
+      display: flex; gap: .6rem; align-items: center; flex-wrap: wrap;
+    }
+    .toolbar input {
+      flex: 1; min-width: 200px;
+      padding: .55rem 1rem; border: 1.5px solid var(--gray-200);
+      border-radius: 6px; font-size: .93rem; outline: none;
+      transition: border-color .15s;
+    }
+    .toolbar input:focus { border-color: var(--primary-light); }
+    .term-count {
+      font-size: .83rem; color: var(--gray-600);
+      margin-left: auto; white-space: nowrap;
+    }
+
+    /* ── Table ───────────────────────────────── */
+    .table-wrap { max-width: 960px; margin: 1.5rem auto 5rem; padding: 0 1rem; }
+    table { width: 100%; border-collapse: collapse; background: #fff;
+      border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    thead { background: var(--primary-pale); }
+    thead th {
+      padding: .75rem 1rem; text-align: left;
+      font-size: .78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .05em; color: var(--primary-dark);
+      border-bottom: 2px solid var(--primary-bg);
+    }
+    tbody tr { border-bottom: 1px solid var(--gray-200); transition: background .1s; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--primary-pale); }
+    td { padding: .85rem 1rem; font-size: .9rem; vertical-align: top; }
+    td.term-name { font-weight: 700; color: var(--primary-dark); white-space: nowrap; }
+    td.term-def {
+      color: var(--gray-800); max-width: 420px;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    td.term-tags { white-space: nowrap; }
+    .tag {
+      font-size: .7rem; background: var(--primary-pale);
+      color: var(--primary-dark); border: 1px solid var(--primary-bg);
+      border-radius: 50px; padding: .12rem .55rem;
+      display: inline-block; margin: .1rem .1rem 0 0;
+    }
+    td.term-actions { white-space: nowrap; }
+    .btn-sm {
+      padding: .3rem .7rem; border-radius: 5px;
+      font-size: .78rem; font-weight: 600; cursor: pointer;
+      border: 1px solid var(--gray-200); background: #fff;
+      color: var(--gray-600); transition: background .15s;
+      margin-right: .3rem;
+    }
+    .btn-sm:hover { background: var(--gray-200); }
+    .btn-sm.del:hover { background: #fdecea; color: #c0392b; border-color: #f5c6cb; }
+
+    /* ── Empty state ─────────────────────────── */
+    .empty-state { text-align: center; padding: 3rem 1rem; color: var(--gray-600); }
+    .empty-state .icon { font-size: 2.5rem; display: block; margin-bottom: .5rem; }
+
+    /* ── Modal ───────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.38);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 100; padding: 1rem;
+      backdrop-filter: blur(2px);
+    }
+    .modal-overlay.hidden { display: none; }
+    .modal {
+      background: #fff; border-radius: 12px; padding: 2rem;
+      width: 100%; max-width: 560px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.15);
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal-header {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-bottom: 1.4rem;
+    }
+    .modal-header h2 { font-size: 1.1rem; color: var(--primary-dark); }
+    .modal-close {
+      background: none; border: none; cursor: pointer;
+      font-size: 1.3rem; color: var(--gray-400); line-height: 1;
+    }
+    .modal-close:hover { color: var(--gray-800); }
+    .modal label {
+      display: block; font-size: .8rem; font-weight: 700;
+      margin-bottom: .3rem; color: var(--gray-600);
+      text-transform: uppercase; letter-spacing: .04em;
+    }
+    .modal input, .modal textarea {
+      width: 100%; padding: .65rem .85rem;
+      border: 1.5px solid var(--gray-200); border-radius: 6px;
+      font-size: .95rem; font-family: inherit; outline: none;
+      margin-bottom: 1rem; transition: border-color .15s; color: var(--gray-800);
+    }
+    .modal input:focus, .modal textarea:focus { border-color: var(--primary-light); }
+    .modal textarea { resize: vertical; min-height: 120px; }
+    .modal-actions { display: flex; gap: .8rem; justify-content: flex-end; margin-top: .5rem; }
+
+    /* ── Toast ───────────────────────────────── */
+    .toast {
+      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      background: var(--primary-dark); color: #fff;
+      padding: .7rem 1.4rem; border-radius: 50px;
+      font-size: .88rem; font-weight: 500;
+      box-shadow: 0 4px 16px rgba(0,0,0,.2);
+      opacity: 0; transition: opacity .3s; pointer-events: none; white-space: nowrap;
+    }
+    .toast.show { opacity: 1; }
+
+    /* ── Export banner ───────────────────────── */
+    .export-banner {
+      background: #fffbeb; border: 1px solid #fde68a;
+      border-radius: var(--radius); padding: .85rem 1.2rem;
+      font-size: .85rem; color: #92400e;
+      display: flex; align-items: center; gap: .8rem;
+      margin: 1rem 1rem 0; max-width: 960px; margin-left: auto; margin-right: auto;
+    }
+    .export-banner.hidden { display: none; }
+    .export-banner strong { flex: 1; }
+
+    @media (max-width: 600px) {
+      header { padding: 1rem; }
+      .table-wrap { padding: 0 .5rem; }
+      td.term-def { max-width: 160px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Login -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="logo"><img src="simbolo_bordas.png" alt="RedeProl" style="width:64px;height:64px;object-fit:contain" /></div>
+    <h1>Painel Admin</h1>
+    <p>Glossário do Design Circular</p>
+    <input type="password" id="pwInput" placeholder="Senha" />
+    <button onclick="tryLogin()">Entrar</button>
+    <div class="login-error" id="loginError"></div>
+  </div>
+</div>
+
+<!-- App -->
+<div id="app">
+  <header>
+    <h1><img src="simbolo_bordas.png" alt="RedeProl" style="height:28px;vertical-align:middle;margin-right:.5rem;filter:brightness(0) invert(1)" /> Admin — Glossário do Design Circular</h1>
+    <div class="header-actions">
+      <a href="index.html" target="_blank"><button class="btn btn-outline">Ver site público ↗</button></a>
+      <button class="btn btn-white" onclick="exportJson()">⬇ Exportar terms.json</button>
+      <button class="btn btn-outline" onclick="logout()">Sair</button>
+    </div>
+  </header>
+
+  <div class="export-banner hidden" id="exportBanner">
+    <strong>⚠️ Você tem alterações não publicadas. Exporte o <code>terms.json</code> e suba no GitHub para que todos vejam.</strong>
+    <button class="btn btn-white" style="background:#007F91;color:#fff" onclick="exportJson()">Exportar agora</button>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" id="search" placeholder="Buscar termo…" autocomplete="off" />
+    <button class="btn btn-primary" onclick="openModal()">+ Novo termo</button>
+    <span class="term-count" id="termCount"></span>
+  </div>
+
+  <div class="table-wrap">
+    <table id="termTable">
+      <thead>
+        <tr>
+          <th>Termo</th>
+          <th>Definição</th>
+          <th>Tags</th>
+          <th>Fonte</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="termBody"></tbody>
+    </table>
+    <div class="empty-state hidden" id="emptyState">
+      <span class="icon">🔍</span>
+      Nenhum termo encontrado.
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay hidden" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">Novo termo</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <label>Termo *</label>
+    <input type="text" id="fTerm" placeholder="Ex.: Ecodesign" />
+    <label>Definição *</label>
+    <textarea id="fDef" placeholder="Descreva o significado do termo…"></textarea>
+    <label>Tags <span style="font-weight:400;text-transform:none">(separadas por vírgula)</span></label>
+    <input type="text" id="fTags" placeholder="Ex.: materiais, ciclo técnico" />
+    <label>Fonte</label>
+    <input type="text" id="fSource" placeholder="Ex.: Ellen MacArthur Foundation" />
+    <input type="hidden" id="fId" />
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveTerm()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── Auth ──────────────────────────────────────────────────────────────────
+// Troque a senha abaixo para a sua senha pessoal
+const PASSWORD = 'design2025';
+const SESSION_KEY = 'glossario-admin-auth';
+
+function tryLogin() {
+  const val = document.getElementById('pwInput').value;
+  if (val === PASSWORD) {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    loadTerms();
+  } else {
+    document.getElementById('loginError').textContent = 'Senha incorreta.';
+    document.getElementById('pwInput').value = '';
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem(SESSION_KEY);
+  location.reload();
+}
+
+document.getElementById('pwInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') tryLogin();
+});
+
+// Auto-login se sessão ativa
+if (sessionStorage.getItem(SESSION_KEY)) {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+}
+
+// ── State ─────────────────────────────────────────────────────────────────
+const LOCAL_KEY = 'glossario-admin-terms-v1';
+let terms = [];
+let dirty = false; // true quando há alterações não exportadas
+
+function normalize(str) {
+  return String(str).normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+}
+function escapeHtml(str) {
+  return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function uid() {
+  return Date.now().toString(36) + Math.random().toString(36).slice(2);
+}
+function sortedTerms(list) {
+  return [...list].sort((a,b) => normalize(a.term).localeCompare(normalize(b.term),'pt-BR'));
+}
+
+function setDirty(val) {
+  dirty = val;
+  document.getElementById('exportBanner').classList.toggle('hidden', !val);
+}
+
+// ── Load ──────────────────────────────────────────────────────────────────
+async function loadTerms() {
+  // Prefer local saved version (admin's working copy)
+  const saved = localStorage.getItem(LOCAL_KEY);
+  if (saved) {
+    terms = JSON.parse(saved);
+    render(document.getElementById('search').value.trim());
+    return;
+  }
+  // First load: fetch from terms.json
+  try {
+    const res = await fetch('terms.json');
+    terms = await res.json();
+  } catch(e) { terms = []; }
+  localStorage.setItem(LOCAL_KEY, JSON.stringify(terms));
+  render(document.getElementById('search').value.trim());
+}
+
+function saveLocal() {
+  localStorage.setItem(LOCAL_KEY, JSON.stringify(terms));
+  setDirty(true);
+}
+
+// ── Render ────────────────────────────────────────────────────────────────
+function render(filter) {
+  const q = filter ? normalize(filter) : '';
+  let list = sortedTerms(terms);
+  if (q) list = list.filter(t => normalize(t.term).includes(q) || normalize(t.definition).includes(q));
+
+  const tbody = document.getElementById('termBody');
+  const empty = document.getElementById('emptyState');
+  const count = document.getElementById('termCount');
+  count.textContent = q
+    ? `${list.length} de ${terms.length} termo${terms.length!==1?'s':''}`
+    : `${terms.length} termo${terms.length!==1?'s':''}`;
+
+  if (!list.length) {
+    tbody.innerHTML = '';
+    empty.classList.remove('hidden');
+    return;
+  }
+  empty.classList.add('hidden');
+
+  tbody.innerHTML = list.map(t => {
+    const tags = (t.tags||[]).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('');
+    const defShort = (t.definition||'').replace(/\n/g,' ').slice(0, 120) + ((t.definition||'').length > 120 ? '…' : '');
+    return `<tr>
+      <td class="term-name">${escapeHtml(t.term)}</td>
+      <td class="term-def" title="${escapeHtml(t.definition)}">${escapeHtml(defShort)}</td>
+      <td class="term-tags">${tags}</td>
+      <td style="font-size:.82rem;color:var(--gray-600)">${escapeHtml(t.source||'')}</td>
+      <td class="term-actions">
+        <button class="btn-sm" onclick="openModal('${t.id}')">✏️ Editar</button>
+        <button class="btn-sm del" onclick="deleteTerm('${t.id}')">🗑️</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+// ── Search ────────────────────────────────────────────────────────────────
+let searchTimer;
+document.getElementById('search').addEventListener('input', e => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => render(e.target.value.trim()), 200);
+});
+
+// ── Modal ─────────────────────────────────────────────────────────────────
+function openModal(id) {
+  ['fId','fTerm','fDef','fTags','fSource'].forEach(f => document.getElementById(f).value = '');
+  document.getElementById('modalTitle').textContent = 'Novo termo';
+
+  if (id) {
+    const t = terms.find(x => x.id === id);
+    if (t) {
+      document.getElementById('modalTitle').textContent = 'Editar termo';
+      document.getElementById('fId').value     = t.id;
+      document.getElementById('fTerm').value   = t.term;
+      document.getElementById('fDef').value    = t.definition;
+      document.getElementById('fTags').value   = (t.tags||[]).join(', ');
+      document.getElementById('fSource').value = t.source||'';
+    }
+  }
+  document.getElementById('modalOverlay').classList.remove('hidden');
+  document.getElementById('fTerm').focus();
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.add('hidden');
+}
+
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function saveTerm() {
+  const termVal = document.getElementById('fTerm').value.trim();
+  const defVal  = document.getElementById('fDef').value.trim();
+  if (!termVal || !defVal) { alert('Preencha o termo e a definição.'); return; }
+
+  const id     = document.getElementById('fId').value;
+  const tags   = document.getElementById('fTags').value.split(',').map(s=>s.trim()).filter(Boolean);
+  const source = document.getElementById('fSource').value.trim();
+  const entry  = { id: id || uid(), term: termVal, definition: defVal, tags, source };
+
+  if (id) {
+    const idx = terms.findIndex(t => t.id === id);
+    if (idx !== -1) terms[idx] = entry; else terms.push(entry);
+  } else {
+    terms.push(entry);
+  }
+
+  saveLocal();
+  closeModal();
+  render(document.getElementById('search').value.trim());
+  showToast(id ? 'Termo atualizado ✓' : 'Termo adicionado ✓');
+}
+
+function deleteTerm(id) {
+  const t = terms.find(x => x.id === id);
+  if (!t || !confirm(`Excluir o termo "${t.term}"?`)) return;
+  terms = terms.filter(x => x.id !== id);
+  saveLocal();
+  render(document.getElementById('search').value.trim());
+  showToast('Termo excluído');
+}
+
+// ── Export ────────────────────────────────────────────────────────────────
+function exportJson() {
+  const data = sortedTerms(terms).map(({id, term, definition, tags, source}) =>
+    ({ id, term, definition, tags: tags||[], source: source||'' })
+  );
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+  const a = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(blob), download: 'terms.json'
+  });
+  a.click();
+  URL.revokeObjectURL(a.href);
+  setDirty(false);
+  showToast('terms.json exportado — suba no GitHub para publicar ✓');
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────
+if (sessionStorage.getItem(SESSION_KEY)) loadTerms();
+</script>
+</body>
+</html>
