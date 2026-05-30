@@ -1,0 +1,177 @@
+[
+  {
+    "id": "1",
+    "term": "Ciclo Biológico",
+    "definition": "Processos — como compostagem e digestão anaeróbia — que juntos ajudam a regenerar o capital natural. Os únicos materiais adequados para esses processos são aqueles que podem ser devolvidos com segurança à biosfera.",
+    "tags": ["ciclos", "biologia"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "2",
+    "term": "Ciclo Técnico",
+    "definition": "Processos pelos quais os produtos e materiais fluem a fim de manter seu valor no nível mais alto possível. Os materiais adequados para esses processos são os não consumidos durante o uso — como metais, plásticos e madeira.\n\nNo ciclo técnico, as oportunidades para manter e gerar valor vêm da retenção da maior proporção de energia e mão de obra integradas ao produto. Os processos que mais contribuem para tanto são, em ordem de valor: manter, prolongar, compartilhar; reusar e redistribuir; recondicionar e remanufaturar; e reciclar.",
+    "tags": ["ciclos", "materiais"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "3",
+    "term": "Compartilhar",
+    "definition": "Uso de um produto por vários usuários. É uma prática que retém o valor mais alto de um produto ao prolongar seu período de uso.",
+    "tags": ["uso", "valor"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "4",
+    "term": "Compostagem",
+    "definition": "Decomposição microbiana da matéria orgânica na presença de oxigênio.\n\nEm uma economia circular, a compostagem pode ser usada para converter coprodutos de alimentos e outros materiais biodegradáveis em adubo composto, que pode ser usado como agente de melhoria do solo.",
+    "tags": ["biologia", "solo"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "5",
+    "term": "Digestão Anaeróbia",
+    "definition": "Decomposição microbiana da matéria orgânica na ausência de oxigênio.\n\nEm uma economia circular, a digestão anaeróbia pode ser usada para converter coprodutos alimentares, lodo de esgoto e outros materiais biodegradáveis em digestatos (ou \"biossólidos\") que podem ser usados como agentes de melhoria do solo e biogás.",
+    "tags": ["biologia", "energia"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "6",
+    "term": "Durabilidade",
+    "definition": "Capacidade de um produto, componente ou material permanecer funcional e relevante quando usado como pretendido.\n\nA durabilidade geralmente diz respeito aos atributos físicos de um produto (capacidade de resistir a danos e desgaste), embora em alguns casos seja tecnológica (por exemplo, a capacidade de um software ser atualizado muitas vezes) e emocional (por exemplo, a capacidade de certas roupas de permanecerem desejáveis ao longo do tempo).",
+    "tags": ["design", "produto"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "7",
+    "term": "Economia Circular",
+    "definition": "Estrutura de soluções sistêmicas que enfrenta desafios globais, como mudanças climáticas, perda de biodiversidade, resíduos e poluição. É baseada em três princípios, orientados pelo design: eliminar resíduos e poluição, circular produtos e materiais (em seu maior valor) e regenerar a natureza.\n\nA transição para a economia circular é sustentada pela transição para energias e materiais renováveis e dissocia a atividade econômica do consumo de recursos finitos. Isso representa uma mudança sistêmica que cria resiliência de longo prazo, gera oportunidades comerciais e econômicas e fornece benefícios ambientais e sociais.",
+    "tags": ["conceito", "sistema"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "8",
+    "term": "Economia Linear",
+    "definition": "Economia em que recursos finitos são extraídos para fazer produtos que são usados — geralmente não em todo o seu potencial — e descartados (\"extrair-produzir-desperdiçar\").\n\nÉ um sistema esbanjador e poluente que degrada os sistemas naturais.",
+    "tags": ["conceito", "sistema"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "9",
+    "term": "Energia Renovável",
+    "definition": "Energia derivada de recursos que não se esgotam nas escalas de tempo relevantes para a economia, ou seja, não em escalas de tempo geológicas.\n\nAlguns exemplos incluem: eólica, solar, hidrelétrica, hidrotermal, oceânica (ondas e marés), geotérmica e biogás derivado de digestão anaeróbia.",
+    "tags": ["energia", "renováveis"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "10",
+    "term": "Logística Reversa",
+    "definition": "Cadeias de abastecimento dedicadas ao fluxo reverso de produtos e materiais para fins de manutenção, reparo, reuso, recondicionamento, refabricação, reciclagem ou regeneração de sistemas naturais.",
+    "tags": ["logística", "cadeia de valor"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "11",
+    "term": "Manter (em uso)",
+    "definition": "Manter um produto em seu estado atual de qualidade, funcionalmente e/ou cosmético para se proteger contra falhas ou deterioração. É uma prática que retém o valor mais alto de um produto ao prolongar seu período de uso.",
+    "tags": ["uso", "valor"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "12",
+    "term": "Materiais Finitos",
+    "definition": "Materiais que não são renováveis nas escalas de tempo relevantes para a economia, ou seja, não em escalas de tempo geológicas.\n\nAlguns exemplos incluem: metais e minerais; formas fósseis de carbono, como petróleo, carvão e gás natural; e areia, rochas e pedras.",
+    "tags": ["materiais", "recursos"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "13",
+    "term": "Materiais Não Virgens",
+    "definition": "Materiais usados anteriormente.\n\nIsso inclui: materiais em produtos que foram reusados, recondicionados ou reparados; componentes refabricados; e materiais reciclados. São também chamados de materiais secundários.",
+    "tags": ["materiais", "reciclagem"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "14",
+    "term": "Materiais Renováveis",
+    "definition": "Materiais que são continuamente repostos a uma taxa igual ou superior à taxa de esgotamento.\n\nAlguns exemplos incluem: algodão, cânhamo, milho, madeira, lã, couro, coprodutos agrícolas, nitrogênio, dióxido de carbono e sal marinho. Para fazer parte de uma economia circular, esses materiais (quando relevante) devem ser produzidos usando práticas de produção regenerativas.",
+    "tags": ["materiais", "renováveis"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "15",
+    "term": "Materiais Virgens",
+    "definition": "Materiais que ainda não foram utilizados na economia.\n\nIncluem materiais finitos (por exemplo, minério de ferro extraído do solo) e recursos renováveis (por exemplo, algodão recém-produzido).",
+    "tags": ["materiais", "recursos"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "16",
+    "term": "Produção Regenerativa",
+    "definition": "A produção regenerativa fornece alimentos e materiais produzidos de maneiras que apoiam resultados positivos para a natureza, incluindo, mas não se limitam a: solos saudáveis e estáveis, melhoria da biodiversidade local e melhoria da qualidade do ar e da água.\n\nNa agricultura, as escolas de pensamento de produção regenerativa incluem agroecologia, agrossilvicultura e agricultura de conservação.",
+    "tags": ["produção", "natureza"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "17",
+    "term": "Reciclabilidade",
+    "definition": "A facilidade com que um material pode ser reciclado na prática e em escala.",
+    "tags": ["reciclagem", "design"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "18",
+    "term": "Reciclar",
+    "definition": "Transformar um produto ou componente em seus materiais ou substâncias básicas e reprocessá-las em novos materiais. O valor e a energia incorporados ao produto são perdidos no processo. Em uma economia circular, a reciclagem é o último recurso.",
+    "tags": ["reciclagem", "materiais"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "19",
+    "term": "Recondicionar",
+    "definition": "Retornar um produto ao seu bom estado de funcionamento. Pode incluir reparo ou substituição de componentes, atualização das especificações e melhorias cosméticas.",
+    "tags": ["uso", "reparo"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "20",
+    "term": "Redistribuir",
+    "definition": "Encaminhar um produto para outro cliente para que seja usado com alto valor em vez de se tornar resíduo.\n\nPor exemplo, um supermercado pode redistribuir alimentos comestíveis excedentes para um banco de alimentos.",
+    "tags": ["uso", "valor"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "21",
+    "term": "Refabricar",
+    "definition": "Reengenharia de produtos e componentes para que retornem à condição de quando eram novos, com o mesmo nível ou nível superior de desempenho.\n\nOs produtos ou componentes refabricados geralmente são fornecidos com uma garantia equivalente ou melhor do que a do produto recém-fabricado.",
+    "tags": ["manufatura", "valor"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "22",
+    "term": "Reparabilidade",
+    "definition": "Facilidade com que um produto ou componente pode ser reparado.",
+    "tags": ["design", "reparo"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "23",
+    "term": "Reparar",
+    "definition": "Operação pela qual um produto ou componente defeituoso ou quebrado é devolvido a um estado utilizável para cumprir o uso pretendido.",
+    "tags": ["reparo", "uso"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "24",
+    "term": "Reusar",
+    "definition": "Uso repetido de um produto ou componente para o propósito pretendido sem modificação significativa.\n\nPequenos ajustes e limpeza do componente ou produto podem ser necessários para prepará-lo para o próximo uso.",
+    "tags": ["uso", "valor"],
+    "source": "Ellen MacArthur Foundation"
+  },
+  {
+    "id": "25",
+    "term": "Vida Útil",
+    "definition": "Período de tempo desde o momento em que um produto é liberado para uso após a fabricação até o momento em que se torna obsoleto e sem possibilidade de recuperação enquanto produto.",
+    "tags": ["produto", "ciclo de vida"],
+    "source": "Ellen MacArthur Foundation"
+  }
+]

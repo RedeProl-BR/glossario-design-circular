@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glossário do Design Circular</title>
+  <style>
+    :root {
+      --primary:      #007F91;
+      --primary-dark: #005F6E;
+      --primary-light:#009DB2;
+      --primary-bg:   #CCE9ED;
+      --primary-pale: #EAF6F8;
+      --gray-100: #f7f9fa;
+      --gray-200: #e8ecee;
+      --gray-400: #aab4bb;
+      --gray-600: #5f7178;
+      --gray-800: #1e2d32;
+      --radius: 8px;
+      --shadow: 0 1px 4px rgba(0,0,0,.07);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--gray-100);
+      color: var(--gray-800);
+      min-height: 100vh;
+    }
+
+    /* ── Header ──────────────────────────────── */
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 2.8rem 1.5rem 1.8rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -.5px;
+    }
+    header p {
+      margin-top: .4rem;
+      opacity: .85;
+      font-size: .95rem;
+    }
+
+    /* ── Search ──────────────────────────────── */
+    .search-wrap {
+      max-width: 580px;
+      margin: 1.5rem auto 0;
+      position: relative;
+    }
+    .search-wrap svg {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: .5;
+      pointer-events: none;
+    }
+    .search-wrap input {
+      width: 100%;
+      padding: .7rem 1rem .7rem 2.8rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      outline: none;
+      box-shadow: var(--shadow);
+      color: var(--gray-800);
+    }
+    .search-wrap input::placeholder { color: var(--gray-400); }
+
+    /* ── Alpha nav ───────────────────────────── */
+    .alpha-nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #fff;
+      border-bottom: 1px solid var(--gray-200);
+      padding: .6rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .25rem;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+    .alpha-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 6px;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      transition: background .15s, color .15s;
+    }
+    .alpha-nav a.has-terms:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+    .alpha-nav a.has-terms {
+      background: var(--primary-pale);
+    }
+    .alpha-nav a.inactive {
+      color: var(--gray-400);
+      pointer-events: none;
+      font-weight: 400;
+    }
+
+    /* ── Main ────────────────────────────────── */
+    main {
+      max-width: 860px;
+      margin: 2rem auto 5rem;
+      padding: 0 1rem;
+    }
+
+    /* ── Letter section ──────────────────────── */
+    .letter-section { margin-bottom: 2.5rem; }
+    .letter-section h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary-bg);
+      padding-bottom: .3rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ── Term card ───────────────────────────── */
+    .term-card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.2rem 1.4rem;
+      margin-bottom: .75rem;
+      border-left: 4px solid var(--primary-light);
+      position: relative;
+      transition: box-shadow .15s;
+    }
+    .term-card:hover {
+      box-shadow: 0 3px 12px rgba(0,127,145,.12);
+    }
+    .term-card h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--primary-dark);
+      margin-bottom: .5rem;
+      padding-right: 4rem;
+    }
+    .term-card p {
+      font-size: .93rem;
+      line-height: 1.7;
+      color: var(--gray-800);
+    }
+    .term-meta {
+      margin-top: .65rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .3rem;
+    }
+    .tag {
+      font-size: .72rem;
+      background: var(--primary-pale);
+      color: var(--primary-dark);
+      border: 1px solid var(--primary-bg);
+      border-radius: 50px;
+      padding: .15rem .65rem;
+    }
+    .source-badge {
+      font-size: .72rem;
+      color: var(--gray-400);
+      margin-left: auto;
+    }
+
+    /* ── Card actions ────────────────────────── */
+    .term-actions {
+      position: absolute;
+      top: .9rem;
+      right: .9rem;
+      display: flex;
+      gap: .3rem;
+      opacity: 0;
+      transition: opacity .15s;
+    }
+    .term-card:hover .term-actions { opacity: 1; }
+    .btn-icon {
+      background: none;
+      border: 1px solid var(--gray-200);
+      border-radius: 6px;
+      padding: .25rem .55rem;
+      cursor: pointer;
+      font-size: .75rem;
+      color: var(--gray-600);
+      transition: background .15s, border-color .15s;
+      white-space: nowrap;
+    }
+    .btn-icon:hover { background: var(--gray-200); }
+    .btn-icon.del:hover {
+      background: #fdecea;
+      color: #c0392b;
+      border-color: #f5c6cb;
+    }
+
+    /* ── Loading / error / empty ─────────────── */
+    .status-msg {
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--gray-600);
+    }
+    .status-msg .icon { font-size: 2.5rem; display: block; margin-bottom: .5rem; }
+
+    /* ── FAB ─────────────────────────────────── */
+    .fab {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: .85rem 1.4rem;
+      font-size: .93rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(0,127,145,.38);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      transition: background .15s, transform .1s, box-shadow .15s;
+    }
+    .fab:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(0,127,145,.45);
+    }
+
+    /* ── Modal ───────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.38);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 100;
+      padding: 1rem;
+      backdrop-filter: blur(2px);
+    }
+    .modal-overlay.hidden { display: none; }
+    .modal {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 560px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.15);
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.4rem;
+    }
+    .modal-header h2 { font-size: 1.15rem; color: var(--primary-dark); }
+    .modal-close {
+      background: none; border: none; cursor: pointer;
+      font-size: 1.3rem; color: var(--gray-400); line-height: 1;
+    }
+    .modal-close:hover { color: var(--gray-800); }
+    .modal label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 600;
+      margin-bottom: .3rem;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .modal input, .modal textarea {
+      width: 100%;
+      padding: .65rem .85rem;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 6px;
+      font-size: .95rem;
+      font-family: inherit;
+      outline: none;
+      margin-bottom: 1rem;
+      transition: border-color .15s;
+      color: var(--gray-800);
+    }
+    .modal input:focus, .modal textarea:focus {
+      border-color: var(--primary-light);
+    }
+    .modal textarea { resize: vertical; min-height: 110px; }
+    .modal-actions { display: flex; gap: .8rem; justify-content: flex-end; margin-top: .25rem; }
+    .btn {
+      padding: .6rem 1.3rem;
+      border-radius: 6px;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background .15s;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-secondary { background: var(--gray-200); color: var(--gray-800); }
+    .btn-secondary:hover { background: var(--gray-400); color: #fff; }
+
+    /* ── Info banner ─────────────────────────── */
+    .info-banner {
+      background: var(--primary-pale);
+      border: 1px solid var(--primary-bg);
+      border-radius: var(--radius);
+      padding: .75rem 1rem;
+      font-size: .82rem;
+      color: var(--primary-dark);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: .6rem;
+    }
+    .info-banner svg { flex-shrink: 0; margin-top: 1px; }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.4rem; }
+      .alpha-nav a { width: 1.6rem; height: 1.6rem; font-size: .72rem; }
+      .fab { bottom: 1rem; right: 1rem; padding: .7rem 1.1rem; font-size: .85rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Glossário do Design Circular</h1>
+  <p>Termos e definições do universo da economia e design circular</p>
+  <div class="search-wrap">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="#fff"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zm-5.242 1.156a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/></svg>
+    <input type="text" id="search" placeholder="Buscar termo…" autocomplete="off" />
+  </div>
+</header>
+
+<nav class="alpha-nav" id="alphaNav"></nav>
+
+<main id="main">
+  <div class="status-msg">
+    <span class="icon">⏳</span>
+    Carregando termos…
+  </div>
+</main>
+
+<button class="fab" onclick="openModal()">
+  <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2a.75.75 0 0 1 .75.75v4.5h4.5a.75.75 0 0 1 0 1.5h-4.5v4.5a.75.75 0 0 1-1.5 0v-4.5h-4.5a.75.75 0 0 1 0-1.5h4.5v-4.5A.75.75 0 0 1 8 2Z"/></svg>
+  Adicionar termo
+</button>
+
+<!-- Modal -->
+<div class="modal-overlay hidden" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">Novo termo</h2>
+      <button class="modal-close" onclick="closeModal()" title="Fechar">✕</button>
+    </div>
+    <label>Termo *</label>
+    <input type="text" id="fTerm" placeholder="Ex.: Ecodesign" />
+    <label>Definição *</label>
+    <textarea id="fDef" placeholder="Descreva o significado do termo…"></textarea>
+    <label>Tags <span style="font-weight:400;text-transform:none">(separadas por vírgula)</span></label>
+    <input type="text" id="fTags" placeholder="Ex.: materiais, ciclo técnico" />
+    <label>Fonte</label>
+    <input type="text" id="fSource" placeholder="Ex.: Ellen MacArthur Foundation" />
+    <input type="hidden" id="fId" />
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveTerm()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Helpers ───────────────────────────────────────────────────────────────
+const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const LOCAL_KEY = 'glossario-dc-extras-v1';
+
+function normalize(str) {
+  return String(str).normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+}
+
+function firstLetter(t) {
+  return normalize(t.term)[0].toUpperCase();
+}
+
+function uid() {
+  return 'local-' + Date.now().toString(36) + Math.random().toString(36).slice(2);
+}
+
+function escapeHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// ── State ─────────────────────────────────────────────────────────────────
+// baseTerms  → loaded from terms.json (read-only source of truth)
+// localTerms → additions/edits stored in localStorage
+let baseTerms  = [];
+let localTerms = JSON.parse(localStorage.getItem(LOCAL_KEY) || '[]');
+
+function allTerms() {
+  // Merge: localTerms override baseTerms by id; new local terms appended
+  const base = baseTerms.filter(b => !localTerms.find(l => l.id === b.id));
+  return [...base, ...localTerms];
+}
+
+function saveLocal() {
+  localStorage.setItem(LOCAL_KEY, JSON.stringify(localTerms));
+}
+
+// ── Load terms.json ───────────────────────────────────────────────────────
+async function loadTerms() {
+  try {
+    const res = await fetch('terms.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    baseTerms = await res.json();
+  } catch (err) {
+    console.warn('Não foi possível carregar terms.json:', err);
+    baseTerms = [];
+  }
+  render(document.getElementById('search').value.trim());
+}
+
+// ── Render ────────────────────────────────────────────────────────────────
+function groupByLetter(list) {
+  const map = {};
+  ALPHABET.forEach(l => (map[l] = []));
+  list.forEach(t => {
+    const l = firstLetter(t);
+    if (map[l]) map[l].push(t);
+  });
+  return map;
+}
+
+function sortedTerms(list) {
+  return [...list].sort((a, b) =>
+    normalize(a.term).localeCompare(normalize(b.term), 'pt-BR')
+  );
+}
+
+function buildAlphaNav(grouped) {
+  document.getElementById('alphaNav').innerHTML = ALPHABET.map(l => {
+    const has = grouped[l]?.length > 0;
+    return `<a href="${has ? '#letter-' + l : '#'}" class="${has ? 'has-terms' : 'inactive'}">${l}</a>`;
+  }).join('');
+}
+
+function renderCard(t) {
+  const isLocal = localTerms.some(l => l.id === t.id);
+  const tags = (t.tags || []).map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('');
+  const source = t.source ? `<span class="source-badge">${escapeHtml(t.source)}</span>` : '';
+  const defHtml = escapeHtml(t.definition).replace(/\n/g, '<br>');
+  return `
+    <div class="term-card" id="term-${t.id}">
+      <div class="term-actions">
+        <button class="btn-icon" onclick="openModal('${t.id}')">✏️ Editar</button>
+        <button class="btn-icon del" onclick="deleteTerm('${t.id}')">🗑️</button>
+      </div>
+      <h3>${escapeHtml(t.term)}</h3>
+      <p>${defHtml}</p>
+      <div class="term-meta">${tags}${source}</div>
+    </div>`;
+}
+
+function render(filter) {
+  const main = document.getElementById('main');
+  const q = filter ? normalize(filter) : '';
+
+  let list = sortedTerms(allTerms());
+  if (q) {
+    list = list.filter(t =>
+      normalize(t.term).includes(q) || normalize(t.definition).includes(q)
+    );
+  }
+
+  if (list.length === 0) {
+    buildAlphaNav(groupByLetter([]));
+    main.innerHTML = `
+      <div class="status-msg">
+        <span class="icon">🔍</span>
+        Nenhum termo encontrado para <strong>"${escapeHtml(filter)}"</strong>
+      </div>`;
+    return;
+  }
+
+  const grouped = groupByLetter(list);
+  buildAlphaNav(grouped);
+
+  const hasLocalEdits = localTerms.length > 0;
+  const banner = hasLocalEdits ? `
+    <div class="info-banner">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="#007F91"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>
+      Você tem <strong>${localTerms.length} termo(s) adicionado(s) ou editado(s) localmente</strong>. Para publicar no site, atualize o arquivo <code>terms.json</code> no GitHub.
+      <button onclick="exportJson()" style="margin-left:auto;background:var(--primary);color:#fff;border:none;border-radius:4px;padding:.25rem .7rem;font-size:.78rem;cursor:pointer;white-space:nowrap">Exportar JSON</button>
+    </div>` : '';
+
+  main.innerHTML = banner + ALPHABET.map(l => {
+    const items = grouped[l];
+    if (!items?.length) return '';
+    return `
+      <section class="letter-section" id="letter-${l}">
+        <h2>${l}</h2>
+        ${items.map(renderCard).join('')}
+      </section>`;
+  }).join('');
+}
+
+// ── Search ────────────────────────────────────────────────────────────────
+let searchTimer;
+document.getElementById('search').addEventListener('input', e => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => render(e.target.value.trim()), 200);
+});
+
+// ── Modal ─────────────────────────────────────────────────────────────────
+function openModal(id) {
+  const overlay = document.getElementById('modalOverlay');
+  ['fId','fTerm','fDef','fTags','fSource'].forEach(f => document.getElementById(f).value = '');
+  document.getElementById('modalTitle').textContent = 'Novo termo';
+
+  if (id) {
+    const t = allTerms().find(x => x.id === id);
+    if (t) {
+      document.getElementById('modalTitle').textContent = 'Editar termo';
+      document.getElementById('fId').value      = t.id;
+      document.getElementById('fTerm').value    = t.term;
+      document.getElementById('fDef').value     = t.definition;
+      document.getElementById('fTags').value    = (t.tags || []).join(', ');
+      document.getElementById('fSource').value  = t.source || '';
+    }
+  }
+  overlay.classList.remove('hidden');
+  document.getElementById('fTerm').focus();
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.add('hidden');
+}
+
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+function saveTerm() {
+  const termVal = document.getElementById('fTerm').value.trim();
+  const defVal  = document.getElementById('fDef').value.trim();
+  if (!termVal || !defVal) { alert('Preencha o termo e a definição.'); return; }
+
+  const id     = document.getElementById('fId').value;
+  const tags   = document.getElementById('fTags').value.split(',').map(s => s.trim()).filter(Boolean);
+  const source = document.getElementById('fSource').value.trim();
+  const entry  = { id: id || uid(), term: termVal, definition: defVal, tags, source };
+
+  if (id) {
+    const idx = localTerms.findIndex(t => t.id === id);
+    if (idx !== -1) localTerms[idx] = entry;
+    else localTerms.push(entry); // editing a base term → add to local overrides
+  } else {
+    localTerms.push(entry);
+  }
+
+  saveLocal();
+  closeModal();
+  render(document.getElementById('search').value.trim());
+}
+
+function deleteTerm(id) {
+  const t = allTerms().find(x => x.id === id);
+  if (!t || !confirm(`Excluir o termo "${t.term}"?`)) return;
+  // Remove from local overrides; if it's a base term, add a "deleted" marker
+  localTerms = localTerms.filter(l => l.id !== id);
+  if (baseTerms.find(b => b.id === id)) {
+    localTerms.push({ id, _deleted: true });
+  }
+  saveLocal();
+  render(document.getElementById('search').value.trim());
+}
+
+// Filter deleted base terms
+const _origAllTerms = allTerms;
+// Override allTerms to respect deletions
+function allTerms() {
+  const deletedIds = new Set(localTerms.filter(l => l._deleted).map(l => l.id));
+  const base = baseTerms.filter(b => !localTerms.find(l => l.id === b.id) && !deletedIds.has(b.id));
+  return [...base, ...localTerms.filter(l => !l._deleted)];
+}
+
+// ── Export JSON ───────────────────────────────────────────────────────────
+function exportJson() {
+  const data = sortedTerms(allTerms()).map(({ id, term, definition, tags, source }) =>
+    ({ id, term, definition, tags: tags || [], source: source || '' })
+  );
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const a = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(blob),
+    download: 'terms.json',
+  });
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────
+loadTerms();
+</script>
+</body>
+</html>
